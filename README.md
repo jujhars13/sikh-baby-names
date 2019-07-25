@@ -21,4 +21,8 @@ npm install
 # eg if you've got a letter ਰ from the hukamnama
 
 node index.js r
+
+# or to use output in a spreadsheet
+
+node index.js r >/tmp/rarra.csv
 ```
