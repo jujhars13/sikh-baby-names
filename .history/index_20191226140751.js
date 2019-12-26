@@ -13,38 +13,14 @@ Promise.resolve()
     return knex.select('_id', 'source_id', 'gurmukhi', 'transliteration', 'english_ssk')
       .where('gurmukhi', 'like', `% ${str}%`)
       .from('shabad')
-      .orderBy(['_id']);
-    //.limit(10);
-  })
-  .then(data => {
-    // search transliteration for all words starting with H- may be more than one
-    const out = [];
-    data.forEach(row => {
-      let transliterationSentence = row.gurmukhi.split(' ');
-      let words = transliterationSentence.filter(w => w.startsWith(str));
-      words.forEach(w => {
-        row.word = w;
-        out.push(row);
-      });
-    });
-    return out;
-  })
-  .then(data => {
-    // put into a map based on matching words to find unique entries for the word
-    let out = new Map([]);
-
-    data.forEach(row => {
-      out.set(row.word, row);
-    });
-
-    // sort map
-    var mapAsc = new Map([...out.entries()].sort());
-
-    return [...mapAsc.values()];
-
+      .orderBy(['source_id', '_id'])
+      .limit(10);
   })
   .then(data => {
     let fields = Object.keys(data[0]);
+    // todo search transliteration for all words starting with H- may be more than one
+    // put into a map to find unique
+    // also spit out first occurence of word
     const csv = parse(data, { fields });
     console.log(csv);
     return Promise.resolve(data);

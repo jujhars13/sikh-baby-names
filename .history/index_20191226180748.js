@@ -13,11 +13,11 @@ Promise.resolve()
     return knex.select('_id', 'source_id', 'gurmukhi', 'transliteration', 'english_ssk')
       .where('gurmukhi', 'like', `% ${str}%`)
       .from('shabad')
-      .orderBy(['_id']);
-    //.limit(10);
+      .orderBy(['_id'])
+      .limit(10);
   })
   .then(data => {
-    // search transliteration for all words starting with H- may be more than one
+    // TODO search transliteration for all words starting with H- may be more than one
     const out = [];
     data.forEach(row => {
       let transliterationSentence = row.gurmukhi.split(' ');
@@ -30,21 +30,26 @@ Promise.resolve()
     return out;
   })
   .then(data => {
-    // put into a map based on matching words to find unique entries for the word
+    // TODO put into a map based on matching words to find uniques
     let out = new Map([]);
 
     data.forEach(row => {
       out.set(row.word, row);
     });
 
-    // sort map
     var mapAsc = new Map([...out.entries()].sort());
 
-    return [...mapAsc.values()];
+    return mapAsc.values();
 
+    // TODO sort map
+    // TODO also spit out first occurrence of word entire Gurmukhi sentence
   })
   .then(data => {
+    console.log(data);
     let fields = Object.keys(data[0]);
+    //let fields = data.keys[0];
+    console.log(fields);
+    process.exit(0);
     const csv = parse(data, { fields });
     console.log(csv);
     return Promise.resolve(data);

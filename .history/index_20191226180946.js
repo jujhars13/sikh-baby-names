@@ -13,8 +13,8 @@ Promise.resolve()
     return knex.select('_id', 'source_id', 'gurmukhi', 'transliteration', 'english_ssk')
       .where('gurmukhi', 'like', `% ${str}%`)
       .from('shabad')
-      .orderBy(['_id']);
-    //.limit(10);
+      .orderBy(['_id'])
+      .limit(10);
   })
   .then(data => {
     // search transliteration for all words starting with H- may be more than one

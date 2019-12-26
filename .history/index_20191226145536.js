@@ -17,7 +17,10 @@ Promise.resolve()
     //.limit(10);
   })
   .then(data => {
-    // search transliteration for all words starting with H- may be more than one
+    // TODO search transliteration for all words starting with H- may be more than one
+    // TODO put into a map to find unique
+    // TODO sort map
+    // TODO also spit out first occurrence of word entire Gurmukhi sentence
     const out = [];
     data.forEach(row => {
       let transliterationSentence = row.gurmukhi.split(' ');
@@ -30,21 +33,7 @@ Promise.resolve()
     return out;
   })
   .then(data => {
-    // put into a map based on matching words to find unique entries for the word
-    let out = new Map([]);
-
-    data.forEach(row => {
-      out.set(row.word, row);
-    });
-
-    // sort map
-    var mapAsc = new Map([...out.entries()].sort());
-
-    return [...mapAsc.values()];
-
-  })
-  .then(data => {
-    let fields = Object.keys(data[0]);
+    let fields = Object.keys(data[1]);
     const csv = parse(data, { fields });
     console.log(csv);
     return Promise.resolve(data);

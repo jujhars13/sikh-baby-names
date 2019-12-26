@@ -12,6 +12,6 @@
   "dependencies": {
     "json2csv": "^4.5.2",
     "knex": "^0.19.1",
-    "sqlite3": "~4.0.9"
+    "sqlite3": "^4.0.9"
   }
 }
