@@ -1,17 +1,20 @@
 {
   "name": "sikh-baby-names",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "Tool to scan Sikh scripture for baby names based on a letter",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jujhar Singh",
+  "license": "MIT",
+  "engines": {
+    "node": ">12"
+  },
   "dependencies": {
-    "json2csv": "^4.5.2",
-    "knex": "^0.19.1",
-    "sqlite3": "~4.0.9"
+    "json2csv": "^4.5.4",
+    "knex": "^0.20.4",
+    "sqlite3": "^4.1.1"
   }
 }
