@@ -20,6 +20,8 @@ Promise.resolve()
   .then(() => {
     return knex.select('_id', 'source_id', 'gurmukhi', 'transliteration', 'english_ssk')
       .where('gurmukhi', 'like', `% ${str}%`)
+      // don't forget to account for words that being with a "siahree"
+      .orWhere('gurmukhi', 'like', `% i${str}%`)
       .from('shabad')
       .orderBy(['_id']);
     //.limit(100);
@@ -29,7 +31,7 @@ Promise.resolve()
     const out = [];
     data.forEach(row => {
       let transliterationSentence = row.gurmukhi.split(' ');
-      let words = transliterationSentence.filter(w => w.startsWith(str));
+      let words = transliterationSentence.filter(w => w.startsWith(str) || w.startsWith(`i${str}`));
       words.forEach(w => {
         row.word = w;
         allWords.push(w);
