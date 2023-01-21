@@ -1,10 +1,11 @@
 const knex = require('knex')({ // sql statement library
-  client: 'sqlite',
+  client: 'sqlite3',
   connection: {
     filename: './iGurbani.sqlite'
   },
   useNullAsDefault: true
 });
+
 const { parse } = require('json2csv');
 const fsPromises = require('fs').promises;
 const os = require('os');
