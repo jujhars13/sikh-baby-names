@@ -10,11 +10,11 @@
   "author": "Jujhar Singh",
   "license": "MIT",
   "engines": {
-    "node": ">14"
+    "node": ">18"
   },
   "dependencies": {
-    "json2csv": "~5.0.6",
-    "knex": "^2.4.1",
-    "sqlite3": "^4.2.0"
+    "json2csv": "~5.0.7",
+    "knex": "^2.4.2",
+    "sqlite3": "^5.1.6"
   }
 }
